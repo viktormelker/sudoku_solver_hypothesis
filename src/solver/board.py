@@ -44,12 +44,17 @@ class SudokuBoard:
         return all(cell.value is not None for row in self.board for cell in row)
 
     def is_group_valid(self, group: List[Cell]) -> bool:
+        if len(group) != 9:
+            return False
+
         seen_values: Set[int] = set()
 
         for cell in group:
-            if cell.value is not None and cell.value in seen_values:
+            if cell.value is None or cell.value < 1 or cell.value > 9:
                 return False
-            seen_values.add(cell.value)  # type: ignore
+            if cell.value in seen_values:
+                return False
+            seen_values.add(cell.value)
 
         return True
 

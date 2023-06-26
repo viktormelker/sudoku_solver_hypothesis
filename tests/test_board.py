@@ -1,8 +1,8 @@
 from solver.board import Cell, SudokuBoard
 
 # Positive and negative test cases for is_group_valid method
-positive_group = [Cell(1), Cell(2), Cell(3), Cell(4)]
-negative_group = [Cell(1), Cell(2), Cell(2), Cell(4)]
+positive_group = [Cell(1), Cell(2), Cell(3), Cell(4), Cell(5), Cell(6), Cell(7), Cell(8), Cell(9)]
+negative_group = [Cell(1), Cell(2), Cell(2), Cell(4), Cell(5), Cell(6), Cell(7), Cell(8), Cell(9)]
 
 # Positive and negative test cases for is_solution_valid method
 positive_solution = [
@@ -237,3 +237,13 @@ def test_is_solution_valid_negative():
 def test_is_solution_valid_empty():
     sudoku.board = empty_solution
     assert sudoku.is_solution_valid() is False
+
+
+def test_is_group_valid_invalid_value():
+    invalid_group = [
+        Cell(5), Cell(3), Cell(0),  # Invalid value here
+        Cell(6), Cell(7), Cell(1),
+        Cell(2), Cell(9), Cell(8)
+    ]
+
+    assert sudoku.is_group_valid(invalid_group) == False
