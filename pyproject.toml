@@ -6,7 +6,10 @@ build-backend = "hatchling.build"
 name = "solver"
 version = "0.0.1"
 description = "A weird way of solving sudoku puzzles (mis)using hypothesis and property based testing"
-dependencies = []
+dependencies = [
+    "hypothesis ==6.79.3",
+    "ipdb ==0.13.13",
+]
 
 [project.scripts]
 solver = "solver.main:main"
