@@ -9,18 +9,18 @@ from .strategies import integers_with_exclude
 
 
 @given(st.data())
-@settings(max_examples=20000, verbosity=Verbosity.debug, deadline=None)
+@settings(max_examples=20000, verbosity=Verbosity.normal, deadline=None)
 def test_is_solution_invalid(data):
     sudoku = SudokuBoard(board=[
-        [Cell(5), Cell(7), Cell(4), Cell(8), Cell(9), Cell(1), Cell(6), Cell(2), Cell(3)],
-        [Cell(1), Cell(), Cell(3), Cell(6), Cell(2), Cell(5), Cell(9), Cell(4), Cell(7)],
-        [Cell(2), Cell(6), Cell(), Cell(4), Cell(7), Cell(3), Cell(), Cell(1), Cell(5)],
-        [Cell(4), Cell(), Cell(5), Cell(2), Cell(8), Cell(7), Cell(3), Cell(6), Cell(1)],
-        [Cell(6), Cell(1), Cell(7), Cell(), Cell(3), Cell(4), Cell(2), Cell(5), Cell(8)],
-        [Cell(3), Cell(2), Cell(8), Cell(1), Cell(5), Cell(6), Cell(7), Cell(), Cell(4)],
-        [Cell(9), Cell(5), Cell(6), Cell(3), Cell(4), Cell(8), Cell(1), Cell(7), Cell(2)],
-        [Cell(7), Cell(3), Cell(1), Cell(5), Cell(6), Cell(2), Cell(4), Cell(), Cell()],
-        [Cell(), Cell(4), Cell(2), Cell(7), Cell(1), Cell(9), Cell(5), Cell(3), Cell(6)]
+        [Cell(), Cell(), Cell(), Cell(6), Cell(), Cell(9), Cell(), Cell(), Cell()],
+        [Cell(), Cell(9), Cell(8), Cell(1), Cell(), Cell(4), Cell(3), Cell(5), Cell()],
+        [Cell(7), Cell(), Cell(), Cell(), Cell(3), Cell(), Cell(), Cell(), Cell(9)],
+        [Cell(), Cell(6), Cell(), Cell(7), Cell(), Cell(5), Cell(), Cell(9), Cell()],
+        [Cell(8), Cell(), Cell(), Cell(), Cell(), Cell(), Cell(), Cell(), Cell(4)],
+        [Cell(), Cell(1), Cell(), Cell(8), Cell(), Cell(2), Cell(), Cell(7), Cell()],
+        [Cell(5), Cell(), Cell(), Cell(), Cell(8), Cell(), Cell(), Cell(), Cell(6)],
+        [Cell(), Cell(8), Cell(3), Cell(4), Cell(), Cell(1), Cell(5), Cell(2), Cell()],
+        [Cell(), Cell(), Cell(), Cell(9), Cell(), Cell(3), Cell(), Cell(), Cell()]
     ])
 
     for row_index, row in enumerate(sudoku.rows):
@@ -44,4 +44,4 @@ def test_is_solution_invalid(data):
                 cell.value = data.draw(integers_with_exclude(min_value=1, max_value=9, exclude=impossible_values))
 
     # Verify if the board is a valid solution
-    assert not sudoku.is_solution_valid()
+    assert not sudoku.is_solution_valid(), f"Solution of puzzle: {sudoku}"
