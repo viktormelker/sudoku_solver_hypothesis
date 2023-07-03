@@ -31,16 +31,15 @@ def test_is_solution_invalid(data):
                 column = sudoku.columns[column_index]
                 column_values = {cell.value for cell in column if cell.value is not None}
 
-#                 position_x = to_position_x(row_index)
-#                 position_y = to_position_y(column_index)
-#                 box = sudoku.get_box(position_x=position_x, position_y=position_y)
-#                 box_values = {cell.value for cell in box if cell.value is not None}
+                position_x = to_position_x(column_index)
+                position_y = to_position_y(row_index)
+                box = sudoku.get_box(position_x=position_x, position_y=position_y)
+                box_values = {cell.value for cell in box if cell.value is not None}
 
-                # impossible_values = row_values | column_values | box_values
-                impossible_values = row_values | column_values
+                impossible_values = row_values | column_values | box_values
                 if len(impossible_values) == 9:
                     # this solution is wrong. might as well restart with another attempt
-                    continue
+                    return
 
                 cell.value = data.draw(integers_with_exclude(min_value=1, max_value=9, exclude=impossible_values))
 
