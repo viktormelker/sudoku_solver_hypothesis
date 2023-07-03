@@ -12,15 +12,15 @@ from .strategies import integers_with_exclude
 @settings(max_examples=20000, verbosity=Verbosity.normal, deadline=None)
 def test_is_solution_invalid(data):
     sudoku = SudokuBoard(board=[
-        [Cell(), Cell(), Cell(), Cell(6), Cell(), Cell(9), Cell(), Cell(), Cell()],
-        [Cell(), Cell(9), Cell(8), Cell(1), Cell(), Cell(4), Cell(3), Cell(5), Cell()],
-        [Cell(7), Cell(), Cell(), Cell(), Cell(3), Cell(), Cell(), Cell(), Cell(9)],
-        [Cell(), Cell(6), Cell(), Cell(7), Cell(), Cell(5), Cell(), Cell(9), Cell()],
-        [Cell(8), Cell(), Cell(), Cell(), Cell(), Cell(), Cell(), Cell(), Cell(4)],
-        [Cell(), Cell(1), Cell(), Cell(8), Cell(), Cell(2), Cell(), Cell(7), Cell()],
-        [Cell(5), Cell(), Cell(), Cell(), Cell(8), Cell(), Cell(), Cell(), Cell(6)],
-        [Cell(), Cell(8), Cell(3), Cell(4), Cell(), Cell(1), Cell(5), Cell(2), Cell()],
-        [Cell(), Cell(), Cell(), Cell(9), Cell(), Cell(3), Cell(), Cell(), Cell()]
+        [Cell(9), Cell(), Cell(), Cell(), Cell(2), Cell(), Cell(), Cell(8), Cell(1)],
+        [Cell(2), Cell(), Cell(), Cell(), Cell(), Cell(9), Cell(4), Cell(), Cell()],
+        [Cell(), Cell(7), Cell(), Cell(3), Cell(), Cell(5), Cell(), Cell(), Cell()],
+        [Cell(), Cell(2), Cell(5), Cell(), Cell(), Cell(), Cell(8), Cell(), Cell()],
+        [Cell(3), Cell(), Cell(), Cell(), Cell(), Cell(), Cell(), Cell(), Cell(5)],
+        [Cell(), Cell(), Cell(9), Cell(), Cell(), Cell(), Cell(1), Cell(3), Cell()],
+        [Cell(), Cell(), Cell(), Cell(6), Cell(), Cell(7), Cell(), Cell(9), Cell()],
+        [Cell(), Cell(), Cell(7), Cell(8), Cell(), Cell(), Cell(), Cell(), Cell(2)],
+        [Cell(5), Cell(8), Cell(), Cell(), Cell(9), Cell(), Cell(), Cell(), Cell(4)],
     ])
 
     for row_index, row in enumerate(sudoku.rows):
